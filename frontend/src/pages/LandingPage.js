@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import McDonals from '../components/assets/images/restaurants/McDonals.avif'
-import Dominos from '../components/assets/images/restaurants/Dominos.png'
-import BurgerKing from '../components/assets/images/restaurants/BergerKing.avif'
+import McDonals from '../assets/McDonals.avif'
+import Dominos from '../assets/Dominos.png'
+import BurgerKing from '../assets/BergerKing.avif'
 import { useSelector } from "react-redux";
 
 const LandingPage = () => {

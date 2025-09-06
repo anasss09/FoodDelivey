@@ -1,6 +1,6 @@
 import Carousel from 'react-bootstrap/Carousel';
 import Styles from './FoodImage.module.css';
-import phoneIcon from '../../components/assets/images/phone.png';
+import phoneIcon from '../../assets/phone.png';
 
 function DarkVariantExample({ name, address, imageUrl, contact, cusines }) {
     return (

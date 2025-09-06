@@ -2,7 +2,7 @@ import axios from "../../utils/axios";
 import React, { useRef, useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import profileImg from '../../components/assets/images/profile.png'
+import profileImg from '../../assets/profile.png'
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
