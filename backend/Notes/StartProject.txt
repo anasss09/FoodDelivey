@@ -1,0 +1,8 @@
+How to start this project
+    - Create data folder in src
+    - Create .env file in backend folder
+    - npm start for backend
+
+frontend
+    - npm i
+    - npm start

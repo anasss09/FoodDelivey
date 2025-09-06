@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AllRestaurants from "../components/Restaurant/AllRestaurants";
 import MySpinner from "../components/Spinner";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
 	const userData = useSelector((state) => state.userReducer);

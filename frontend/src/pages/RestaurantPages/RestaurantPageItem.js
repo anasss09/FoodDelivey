@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import FoodImageCarousel from "../../components/FoodItems/FoodImage";
 import Styles from "./RestaurantPageItem.module.css";
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 const RestaurantPageItem = ({ restaurant }) => {
-    const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState('Overview');
+
     const [cusineCategory, setCusineCategory] = useState("");
     const [cusineFood, setCusineFood] = useState([]);
 
@@ -23,11 +22,6 @@ const RestaurantPageItem = ({ restaurant }) => {
             if (food) setCusineFood(food.food);
         }
     }, [cusineCategory, restaurant]);
-
-    const cusineCategoryHandler = (category) => {
-        setCusineCategory(category);
-
-    }
 
     return (
         <div className={Styles['restaurant-item-page-fix']}>

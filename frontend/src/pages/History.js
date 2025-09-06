@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "../utils/axios";
-import { data } from "react-router-dom";
 import Styles from './History.module.css'
 
 const History = () => {

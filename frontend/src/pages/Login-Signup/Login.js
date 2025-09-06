@@ -66,17 +66,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-
-{/* <input
-				ref={emailRef}
-				type="text"
-				placeholder="Enter username or email"
-			/>
-			<input
-				ref={passwordRef}
-				type="password"
-				placeholder="Enter password"
-			/>
-			<button onClick={loginHandler}>Login</button> */}
