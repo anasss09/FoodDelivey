@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.active {
+    color: blue !important;
+}
+
+.profile-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-size: contain;
+}
+
+.restaurant-cover-image {
+  width: 100%;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.restaurantDetails-btn {
+  width: 100%;
+  background-color: blueviolet !important;
+  color: white;
+  border: 0;
+  text-decoration: none;
+}
+
+.restaurantDetails-btn:hover{
+  cursor: pointer;
+}
+
+.restaurantDetails-btn:visited{
+  color: white;
+}
+
+.cart-number{
+  font-size: 10px;
+  position: absolute;
+  top:-5px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  border-radius: 1px;
+  height: 10px;
+  width: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+
+.cart-heading{
+  position: relative;
+}
+
+svg {
+  width: 100% !important;
+  height: auto !important; /* yaha pe valid hai */
+}
+
+.Spinner-custom {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,11 @@
+.signup-img-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.signup-img-container {
+    border-radius: 50%;
+    position: relative;
+}

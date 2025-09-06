@@ -1,0 +1,83 @@
+// import React, { useRef, useState } from "react";
+// import axios from '../../utils/axios'
+// import { useOutletContext } from "react-router-dom";
+// import Styles from './Reviews.module.css'
+// import { FormRestaurantReview } from "./FormRestaurantReview";
+// import { useSelector } from "react-redux";
+// import InputGroup from 'react-bootstrap/InputGroup';
+// import Form from 'react-bootstrap/Form';
+
+// const Reviews = () => {
+
+//   const userData = useSelector(state => state.userReducer)
+//   const { restaurant } = useOutletContext();
+//   const [showFrom, setShowFrom] = useState(false);
+//   const [canDeleteRevirew, setCanDeleteRevirew] = useState(false);
+//   const [rating, setRating] = useState(1);
+//   const [hover, setHover] = useState(0);
+
+//   const ratingRef = useRef();
+//   const messagereviewRef = useRef();
+//   const imageRef = useRef();
+
+//   async function onSubmitHandler(ev) {
+//     ev.preventDefault()
+
+//     try {
+//       const formData = new FormData()
+//       formData.append('rating', ratingRef.current.value)
+//       formData.append('messagereview', messagereviewRef.current.value)
+//       formData.append('imageRef', imageRef.current.value)
+
+
+//     } catch (error) {
+
+//     }
+//   }
+
+//   return (
+//     <div>
+//       <div className={Styles.reviewsContainer}>
+//         <div className={Styles.reviewsSubContainer}>
+//           <div className={Styles.reviewsRestaurantName} >Add reviews to&nbsp;
+//             <span className={Styles.reviewsRestaurantNameSpan}>{restaurant.name}</span>
+//           </div>
+
+//           <form onSubmit={onSubmitHandler}>
+//             <div style={{ display: "flex", marginBottom: "1rem", fontSize: "1.5rem", cursor: "pointer" }}>
+//             {[...Array(5)].map((star, index) => {
+//               index += 1;
+//               return (
+//                 <span
+//                   key={index}
+//                   style={{ color: index <= (hover || rating) ? "#ffc107" : "#e4e5e9" }}
+//                   onClick={() => setRating(index)}
+//                   onMouseEnter={() => setHover(index)}
+//                   onMouseLeave={() => setHover(0)}
+//                   ref={ratingRef}
+//                 >
+//                   ★
+//                 </span>
+//               );
+//             })}
+//           </div>
+
+//           <InputGroup className="mb-3">
+//             <InputGroup.Text id="basic-addon1"><i className="bi bi-upload"></i>
+//               <Form.Control type="file" placeholder="Username" aria-label="Username"
+//                 aria-describedby="basic-addon1" style={{ display: 'hidden' }} />
+//             </InputGroup.Text>
+//             <Form.Control type="text" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+//           </InputGroup>
+
+//           <button type="submit">Submit</button>
+//           </form>
+
+//         </div>
+//       </div>
+//       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+//     </div>
+//   )
+// };
+
+// export default Reviews;

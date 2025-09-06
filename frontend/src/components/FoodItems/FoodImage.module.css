@@ -1,0 +1,75 @@
+.restaurant-header {
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    margin-top: 10px;
+}
+
+.restaurant-name {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+}
+
+.restaurant-cusines {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+}
+
+.cusine-tag {
+    text-transform: capitalize;
+}
+
+.restaurant-address {
+    font-size: 15px;
+    color: #777;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.restaurant-contact {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.icon-phone {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+}
+
+.contact-text {
+    color: #e23744;
+    font-weight: 500;
+}
+
+
+
+
+
+.big-image {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Overlay for "View Gallery" */
+.view-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}

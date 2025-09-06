@@ -1,0 +1,159 @@
+.restaurant-item-page-fix {
+    width: 80%;
+    margin: auto;
+}
+
+.carousel {
+    color: black;
+}
+
+
+
+
+
+
+.cusines-container {
+    margin-top: 10px;
+}
+
+.cusines {
+    min-height: 150px;
+    display: flex;
+    border: 1px solid #eee;
+    gap: 20px;
+    align-items: flex-start;
+
+    /* subtle border */
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+}
+
+/* Left side - Cuisine category list */
+.cusines-category {
+    flex: 1;
+    min-width: 180px;
+    /* prevent shrinking */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cusines .cusines-category {
+    width: 30%;
+    border-right: 1px solid #ddd;
+    /* 🔥 divider line */
+    background: #fafafa;
+}
+
+.cusines .cusines-food {
+    width: 70%;
+    padding: 10px;
+}
+
+.cusines-category-item {
+    text-transform: capitalize;
+    font-size: 18px;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.cusines-category-item:hover {
+    cursor: pointer;
+    background: #f8f8f8;
+}
+
+.cusines-heading {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 35px;
+}
+
+.active-category {
+    background: #e23744;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 6px;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Responsive Fix */
+@media (max-width: 768px) {
+  .cusines {
+    flex-direction: column; /* Stack vertically */
+  }
+
+  .cusines-category {
+    flex-direction: row; /* Show categories in a row */
+    flex-wrap: wrap; /* Wrap if too many */
+    justify-content: flex-start;
+    width: 100%;
+    min-width: unset;
+    gap: 10px;
+  }
+
+  .cusines-food {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+.tabs-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-item {
+    padding: 12px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: capitalize;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: black;
+}
+
+.tab-item:hover {
+    color: #e23744;
+}
+
+.active-tab {
+    border-bottom: 3px solid #e23744;
+    color: #e23744;
+}
+
+.tab-content {
+    padding: 20px;
+}
+
+.review-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.restaurant-photo {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    margin: 10px;
+}
+
+.menu-category {
+    margin-bottom: 20px;
+}

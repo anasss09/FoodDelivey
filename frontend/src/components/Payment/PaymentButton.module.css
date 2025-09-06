@@ -1,0 +1,40 @@
+.payment-btn-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 1rem;
+  z-index: 1000;
+}
+
+.payment-btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.payment-btn-amount {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.payment-btn {
+  background-color: #fc8019; /* Zomato-orange */
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.payment-btn:hover {
+  background-color: #e57000;
+}

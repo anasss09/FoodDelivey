@@ -1,0 +1,9 @@
+41.49 
+
+Step 1: 
+    - index.js
+    - models/user.js
+    - routes/user.js
+    - constroller/user.js
+    - utils/multer.js
+

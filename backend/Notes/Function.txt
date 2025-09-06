@@ -1,0 +1,15 @@
+Object.key -> It will convert keys into array.
+
+// API route to create dummy order
+// app.post("/create-order", (req, res) => {
+//   const { amount } = req.body;
+
+//   // Normally yaha Razorpay SDK hota hai, lekin demo ke liye hardcoded order id bhejenge
+//   const order = {
+// 	id: "order_DUMMY123456",
+// 	amount: amount * 100, // convert to paise
+// 	currency: "INR",
+//   };
+
+//   res.json(order);
+// });

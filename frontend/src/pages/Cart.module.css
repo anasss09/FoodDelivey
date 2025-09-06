@@ -1,0 +1,86 @@
+.card-item-comtainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s ease;
+}
+
+.card-item-comtainer:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item-img {
+    flex: 0 0 120px;
+    height: 120px;
+    border-radius: 10px;
+    overflow: hidden;
+    text-transform: capitalize;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.card-item-details {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.card-item-details strong {
+    color: #000;
+}
+
+h3 {
+    font-size: 16px;
+    margin: 0 0 5px 0;
+    font-weight: 500;
+}
+
+button {
+    background-color: #ff5a5f;
+    /* Zomato red */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 10px;
+    margin: 0 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #e04e50;
+}
+
+span {
+    font-weight: 500;
+    min-width: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+.card-item-controls {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.card-item-veg {
+    display: inline-block;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+/* Cart Empty */
+.emptyReviewsIcon {
+    font-size: 3rem !important; /* ya 3rem */
+    color: #adb5bd; /* muted grey */
+    margin-bottom: 1rem;
+}

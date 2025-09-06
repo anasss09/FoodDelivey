@@ -1,0 +1,20 @@
+Create Directories first
+    - components
+    - pages
+    - redux
+    - utils
+
+1. Create Navbar in componenets
+    - To make Navbar we need to create <NavLink to="" />
+    - TO create NavLink we need react-router-dom
+    - Define .active in index.js for work
+    - Create Login.js, Signup.js, Home.js in pages folder
+
+2. Define Routes in App.js
+3. Before Login we have to create Redux for data from API
+
+4. Create axios in utils/axios
+5. use reducer in Login -> using useSelector
+
+6. Set Profile Image: 
+    - {userData.isLoggedIn && <ProfileImage imageUrl={userData.image} />} write this line in Navbar, then image will show like peofile pic

@@ -1,0 +1,114 @@
+.reviewsContainer {
+    background: #eee;
+    border-radius: 10px;
+}
+
+.reviewsSubContainer {
+    padding: 10px;
+}
+
+.reviewsRestaurantName {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.reviewsRestaurantNameSpan {
+    text-transform: capitalize;
+}
+
+
+/* In Review.js */
+.reviewCard {
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-top: 20px;
+}
+
+.reviewUserDetails {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.reviewUserImage {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.reviewUserName {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.reviewDeleteBtn {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.reviewRatingDetails {
+  display: flex;
+  justify-content: start;
+  gap: 0 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.reviewStars {
+  font-size: 18px;
+}
+
+.starFilled {
+  color: #ffc107; /* gold */
+}
+
+.starEmpty {
+  color: #e0e0e0; /* grey */
+}
+
+.reviewDate {
+  font-size: 12px;
+  color: #777;
+}
+
+.reviewMessage {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+
+/* Review Empty Page */
+.emptyReviewsIcon {
+    font-size: 3rem !important; /* ya 3rem */
+    color: #adb5bd; /* muted grey */
+    margin-bottom: 1rem;
+}
+
+/* Review Card CSS */
+.reviewImageContainer {
+    display: inline-block;
+    margin: 5px; /* thodi gap between images */
+}
+
+.reviewImageContainer img {
+    width: 100%;           /* responsive for small screens */
+    height: auto;          /* maintain aspect ratio */
+    object-fit: cover;     /* crop nicely if container fixed */
+    border-radius: 8px;    /* thoda rounded corners */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Desktop breakpoint */
+@media (min-width: 768px) {
+    .reviewImageContainer img {
+        width: 275px;
+        height: 150px;
+    }
+}
