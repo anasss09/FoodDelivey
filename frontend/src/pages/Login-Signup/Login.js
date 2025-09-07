@@ -15,28 +15,31 @@ const Login = () => {
 	const navigate = useNavigate();
 
 	const onSubmitHandler = async (ev) => {
-		ev.preventDefault()
-		const username = emailRef.current.value;
+		ev.preventDefault();
+		const username = emailRef.current.value.trim();
 		const password = passwordRef.current.value;
 
-		// console.log(username, password);
+		if (!username) return alert("Please enter username");
+		if (!password) return alert("Please enter password");
 
 		try {
 			const { data } = await axios.post("login", { username, password });
-
-			if (!username) return alert("Please enter username");
-			if (!password) return alert("Please enter password");
-
 			dispatch({
 				type: "SET_USER",
 				payload: data.user,
 			});
-
-			navigate("/app");
+		
+			if(data) {
+				console.log('navigating to /app');
+				navigate("/app");
+			}
 		} catch (error) {
-			console.log(error.response.data.message);
+			const msg = error?.response?.data?.message || "Login failed. Please try again.";
+			alert(msg);
+			console.error(msg);
 		}
 	};
+	
 	return (
 		<>
 			{!userData.isLoggedIn && (
