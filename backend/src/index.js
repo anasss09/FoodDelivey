@@ -9,12 +9,10 @@ import { verifyjwt } from "./middlewares/verifyJWT.js";
 const app = express();
 const PORT = process.env.PORT;
 
-// app.use(cors({
-//     origin: process.env.CORS_ORIGINS,
-//     credentials: true
-// }))
-
-app.use(cors()); //not recommended for prod
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}))
 app.use(bodyParser.json({ limit: "4kb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "4kb" }));
 app.use(express.static('public')); // To store the information that front end might provide
@@ -37,14 +35,10 @@ app.use('/restaurant', verifyjwt , restaurantRouter)
 
 mongoose.connect(`${process.env.DB_PATH}/${process.env.DB_NAME}`)
     .then(() => {
-        // Vercel sets PORT automatically, fallback to 3000 for local dev
-        // const port = PORT || 3000;
-        // app.listen(port, () => {
-            console.log(`Server running`);
-        // });
+        app.listen(PORT, () => {
+            console.log("http://localhost:" + PORT);
+        })
     })
     .catch(err => {
-        console.error('Database connection error:', err);
-    });
-
-export default app;
+        console.log(err);
+    })
