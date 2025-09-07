@@ -33,7 +33,7 @@ app.get('/getuser', verifyjwt, getUser);
 app.use('/', userRouter)
 app.use('/restaurant', verifyjwt , restaurantRouter)
 
-mongoose.connect(`${process.env.DB_PATH}/${process.env.DB_NAME}`)
+mongoose.connect(`${process.env.DB_PATH}`)
     .then(() => {
         app.listen(PORT, () => {
             console.log("http://localhost:" + PORT);
@@ -41,4 +41,5 @@ mongoose.connect(`${process.env.DB_PATH}/${process.env.DB_NAME}`)
     })
     .catch(err => {
         console.log(err);
+        throw err;
     })
