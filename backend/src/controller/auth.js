@@ -57,11 +57,11 @@ const generteAccessTokenAndgenerteRefreshToken = async (userId) => {
 	try {
 		let user = await User.findOne({
 			_id: userId,
-		});		
+		});
 
 		const accessToken = await user.generateAccessToken();
 		const refreshToken = await user.generateRefreshToken();
-		
+
 
 		return {
 			accessToken,
@@ -100,20 +100,30 @@ export const postLogin = ErrorWrapper(async (req, res, next) => {
 	}
 
 	const { accessToken, refreshToken } = await generteAccessTokenAndgenerteRefreshToken(user._id);
-	
+
 	user.refreshToken = refreshToken
-	await user.save()	
-	
+	await user.save()
+
 	user = await User.findOne({
-        $or: [
-            { username },
-            { email }
-        ]
-    }).select("-password -refreshToken")
+		$or: [
+			{ username },
+			{ email }
+		]
+	}).select("-password -refreshToken")
 
 	res.status(200)
-		.cookie(`AccessToken`, accessToken)
-		.cookie(`RefreshToken`, refreshToken)
+		.cookie(`AccessToken`, accessToken, {
+			httpOnly: true,
+			secure: true, // because you're on HTTPS in production
+			sameSite: "None", // REQUIRED for cross-domain cookies
+			path: "/"
+		})
+		.cookie(`RefreshToken`, refreshToken, {
+			httpOnly: true,
+			secure: true, // because you're on HTTPS in production
+			sameSite: "None", // REQUIRED for cross-domain cookies
+			path: "/"
+		})
 		.json({
 			success: true,
 			message: "Login Successfull",
@@ -127,12 +137,12 @@ export const getLogout = ErrorWrapper(async (req, res, next) => {
 			httpOnly: true,
 			maxAge: 0
 		})
-		
+
 		res.cookie('RefreshToken', process.env.ACCESS_TOKEN_KEY, {
 			httpOnly: true,
 			maxAge: 0
 		})
-		
+
 		res.status(200).json({
 			message: 'Logout SuccessFull'
 		})

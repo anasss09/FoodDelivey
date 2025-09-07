@@ -19,11 +19,7 @@ app.use(bodyParser.json({ limit: "4kb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "4kb" }));
 app.use(express.static('public')); // To store the information that front end might provide
 
-app.use(cookieParser({
-    httpOnly: true,
-    secure: true, // true on HTTPS
-    sameSite: 'None', // Required if frontend and backend are on different domains
-}));
+app.use(cookieParser());
 
 const getUser = (req, res, next) => {
     const user = req.user;
