@@ -9,10 +9,12 @@ import { verifyjwt } from "./middlewares/verifyJWT.js";
 const app = express();
 const PORT = process.env.PORT;
 
+const allowedOrigins = process.env.CORS_ORIGINS.split(',');
+
 app.use(cors({
-    origin: ["http://localhost:3000", `${process.env.CORS_ORIGINS}`],
+    origin: allowedOrigins,
     credentials: true
-}))
+}));
 app.use(bodyParser.json({ limit: "4kb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "4kb" }));
 app.use(express.static('public')); // To store the information that front end might provide
