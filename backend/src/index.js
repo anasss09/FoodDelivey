@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", `${process.env.CORS_ORIGINS}`],
     credentials: true
 }))
 app.use(bodyParser.json({ limit: "4kb" }));
