@@ -35,10 +35,12 @@ app.use('/restaurant', verifyjwt , restaurantRouter)
 
 mongoose.connect(`${process.env.DB_PATH}/${process.env.DB_NAME}`)
     .then(() => {
-        app.listen(PORT, () => {
-            console.log("http://localhost:" + PORT);
-        })
+        // Vercel sets PORT automatically, fallback to 3000 for local dev
+        const port = PORT || 3000;
+        app.listen(port, () => {
+            console.log(`Server running on port ${port}`);
+        });
     })
     .catch(err => {
-        console.log(err);
-    })
+        console.error('Database connection error:', err);
+    });
