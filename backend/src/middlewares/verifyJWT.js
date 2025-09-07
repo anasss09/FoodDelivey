@@ -6,7 +6,6 @@ import ErrorHandler from '../utils/ErrorHandler.js';
 export const verifyjwt = ErrorWrapper(async (req, res, next) => {
     const incomingRefreshToken = req.cookies.RefreshToken;
     const incomingAccessToken = req.cookies.AccessToken;
-    console.log('refresh token ' + incomingRefreshToken + 'access token ' + incomingAccessToken);
     if (!incomingRefreshToken || !incomingAccessToken) {
         throw new ErrorHandler(401, "Not authorized to access, kindly login first and try again!");
     }
