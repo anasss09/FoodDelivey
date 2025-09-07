@@ -19,7 +19,11 @@ app.use(bodyParser.json({ limit: "4kb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "4kb" }));
 app.use(express.static('public')); // To store the information that front end might provide
 
-app.use(cookieParser());
+app.use(cookieParser({
+    httpOnly: true,
+    secure: true, // true on HTTPS
+    sameSite: 'None', // Required if frontend and backend are on different domains
+}));
 
 const getUser = (req, res, next) => {
     const user = req.user;
@@ -33,7 +37,7 @@ const getUser = (req, res, next) => {
 app.get('/getuser', verifyjwt, getUser);
 
 app.use('/', userRouter)
-app.use('/restaurant', verifyjwt , restaurantRouter)
+app.use('/restaurant', verifyjwt, restaurantRouter)
 
 mongoose.connect(`${process.env.DB_PATH}`)
     .then(() => {
