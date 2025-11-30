@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 const allowedOrigins = process.env.CORS_ORIGINS.split(',');
 
 app.use(cors({
-    origin: allowedOrigins,
+    origin: allowedOrigins,              //  "http://localhost:3000",
     credentials: true
 }));
 app.use(bodyParser.json({ limit: "4kb" }));

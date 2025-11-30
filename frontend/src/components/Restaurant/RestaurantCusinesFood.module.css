@@ -23,7 +23,6 @@
     overflow-x: auto;
     padding-bottom: 0.5rem;
 
-    /* hide default scrollbar in webkit */
     scrollbar-width: none;
     scrollbar-color: #ccc transparent;
 }
