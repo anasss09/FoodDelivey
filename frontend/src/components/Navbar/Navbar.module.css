@@ -1,18 +1,5 @@
-.navbar {
-    display: flex;
-    justify-content: space-around;
-    height: 40px;
-    border-bottom: 1px solid black;
-    align-items: center;
-}
-
-.nav-Item {
-    text-decoration: none !important;
-}
-
-.nav-Item:link,
-.nav-Item:visited {
-    color: black;
-    text-decoration: none !important;
-
-}
+.navbar { background: rgba(248, 244, 235, .92); border-bottom: 1px solid rgba(29, 41, 38, .08); padding: .9rem 0; position: relative; z-index: 10; backdrop-filter: blur(16px); }
+.brand { color: #1d2926 !important; font: 700 1.45rem 'Playfair Display', serif; letter-spacing: -.04em; display: flex; gap: .45rem; align-items: center; }
+.brandMark { width: 26px; height: 26px; border-radius: 50% 50% 50% 8px; background: #e65d36; color: white; font: 600 .86rem 'DM Sans', sans-serif; display: grid; place-items: center; transform: rotate(-15deg); }
+.links { gap: .4rem; }.navLink { color: #52605a !important; font-size: .87rem; font-weight: 600; padding: .55rem .85rem !important; }.navLink:hover { color: #e65d36 !important; }.signupLink { color: #fff !important; background: #1d2926; border-radius: 999px; padding: .55rem 1rem !important; font-size: .83rem; font-weight: 600; margin-left: .35rem; }.signupLink:hover { background: #e65d36; }.cartBadge { background: #e65d36 !important; border: 2px solid #f8f4eb; }.dropdownMenu { border: 0; border-radius: 12px; box-shadow: 0 12px 28px rgba(29, 41, 38, .14); padding: .45rem; }
+@media (max-width: 991px) { .links { padding-top: .75rem; align-items: flex-start !important; }.signupLink { margin-left: 0; } }

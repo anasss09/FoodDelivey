@@ -25,13 +25,12 @@ const Overview = () => {
 
                 <div className={Styles['cusines-food']}>
                     {cusineFood.length > 0 ? cusineFood.map((item, indx) =>
-                        <div key={indx} className={Styles['cusines']}>
-                            <FoodItem
-                                food={item}
-                                category={cusineCategory}
-                                restaurantName={restaurant.name}
-                            />
-                        </div>
+                        <FoodItem
+                            key={item._id || indx}
+                            food={item}
+                            category={cusineCategory}
+                            restaurantName={restaurant.name}
+                        />
                     ) : <div className={Styles['cusines']}>No Food under this category</div>}
                 </div>
             </div>

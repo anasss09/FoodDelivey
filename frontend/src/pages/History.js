@@ -25,18 +25,18 @@ const History = () => {
 
 	return (
 		<div className={Styles['history-container']}>
-			<h2 className={Styles['orderhistory-heading']}>Order History</h2>
-			{orders.length === 0 && <p>No orders yet!</p>}
+			<div className={Styles.historyHeader}><span>Your table</span><h2 className={Styles['orderhistory-heading']}>Past orders, <em>remembered.</em></h2><p>Every good meal you have enjoyed with us, in one place.</p></div>
+			{orders.length === 0 && <div className={Styles.emptyOrders}>No orders yet. Your next favorite meal is waiting.</div>}
 
 			{orders.map((order) => (
 				<div key={order._id} className={Styles['order-card']}>
 					<div className={Styles['datetotalPtice-container']}>
 						<div className={Styles['date-text']}>
-							<strong>Date:</strong>{" "}
+							<span>Delivered</span>
 							{new Date(order.date).toLocaleString("en-IN")}
 						</div>
 						<div className={Styles['totalPrice-text']}>
-							<strong>Total Price:</strong> ₹{order.totalPrice}
+							<span>Order total</span>₹{order.totalPrice}
 						</div>
 					</div>
 
@@ -44,7 +44,7 @@ const History = () => {
 					<div className={Styles['image-scroll']}>
 						{order.items.map((item, index) => (
 							<div key={index} className={Styles['image-card']}>
-								<img src={item.image.url || item.image} className={Styles['history-images']} />
+								<img src={item.image?.url || item.image} alt={item.name} className={Styles['history-images']} />
 								<div className={Styles['ordername-quantity']}><span>{item.name}</span> x <span>{item.quantity}</span></div>
 							</div>
 						))}

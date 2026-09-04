@@ -1,24 +1,25 @@
 .food-item-container {
-    width: 100%; /* full width of parent */
+    width: 100%;
+    min-width: 0;
     display: flex;
     align-items: flex-start;
     gap: 15px;
     margin: 0;
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    border: 1px solid #e5ebe4;
+    border-radius: 14px;
+    background: #fffdf8;
+    box-shadow: 0 4px 12px rgba(29,41,38,.04);
     transition: transform 0.2s ease-in-out;
 }
 
 .food-item-container:hover {
-    transform: scale(1.02);
+    transform: translateY(-3px);
 }
 
 .food-item-image {
-    flex: 0 0 120px;
-    height: 120px;
+    flex: 0 0 145px;
+    height: 130px;
     border-radius: 10px;
     overflow: hidden;
     text-transform: capitalize;
@@ -45,14 +46,14 @@
 .food-item-price {
   font-size: 16px;
   font-weight: 500;
-  color: #e23744; /* zomato red */
+  color: #e65d36;
   margin-bottom: 8px;
 }
 
 .food-item-name {
     font-size: 18px;
     font-weight: 600;
-    color: #222;
+    color: #1d2926;
     margin-bottom: 5px;
     text-transform: capitalize;
 }
@@ -60,7 +61,8 @@
 .food-item-description {
   font-size: 14px;
   color: #666;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  max-width: 520px;
   line-height: 1.4;
   text-transform: capitalize;
 }
@@ -68,27 +70,27 @@
 /* Add to Cart Button */
 .add-to-cart-btn {
   align-self: flex-start;
-  padding: 8px 16px;
-  font-size: 14px;
+  padding: 8px 14px;
+  font-size: 12px;
   font-weight: 600;
   border: none;
   border-radius: 8px;
-  background: #e23744;
+  background: #e65d36;
   color: #fff;
   cursor: pointer;
   transition: background 0.2s ease-in-out;
 }
 
 .add-to-cart-btn:hover {
-  background: #c91f30;
+  background: #bd4526;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .food-item-container {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: stretch;
+    text-align: left;
   }
 
   .food-item-image {
@@ -98,11 +100,11 @@
 
   .food-item-details {
     width: 100%;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .add-to-cart-btn {
-    align-self: center;
+    align-self: flex-start;
   }
 }
 

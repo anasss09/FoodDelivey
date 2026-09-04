@@ -5,6 +5,7 @@ import ErrorWrapper from "../utils/ErrorWrapper.js";
 import uploadOnCloudinary, {
 	uploadBatchOnCloudinary,
 } from "../utils/uploadCloudinary.js";
+import crypto from "crypto";
 
 export const postAddRestaurant = ErrorWrapper(async (req, res, next) => {
 	const { name, address, contact } = req.body;
@@ -904,44 +905,38 @@ export const getReview = ErrorWrapper(async (req, res, next) => {
 });
 
 export const postCreateOrder = ErrorWrapper(async (req, res, next) => {
-	const { amount } = req.body;
 	try {
 		const cart = req.user.cart;
 
-		if (!amount) {
-			throw new ErrorHandler(400, "Amount not fount");
+		if (!cart?.length) throw new ErrorHandler(400, "Your cart is empty.");
+
+		const amount = cart.reduce((total, item) => total + (Number(item.food?.price) * Number(item.quantity || 1)), 0);
+		if (!Number.isFinite(amount) || amount <= 0) throw new ErrorHandler(400, "Your cart total is invalid.");
+		if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+			return res.status(200).json({ success: true, isDummy: true, order: { id: `dummy_${Date.now()}`, amount: Math.round(amount * 100), currency: "INR" } });
 		}
 
-		// Create order object
-		const food = {
-			date: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
-			items: cart.map((item) => ({
-				name: item.food.name,
-				totalPrice: item.food.price * item.quantity,
-				quantity: item.quantity,
-				image: item.food.images[0].url
-			})),
-			totalPrice: amount,
-		};
-
-		req.user.orderHistory.unshift(food);
-
-		const order = {
-			id: req.user.orderHistory[0]._id,
-			amount: req.user.orderHistory[0].totalPrice, // convert to paise
-			currency: "INR",
-			name: req.user.name,
-		};
-
-
-		req.user.cart = []
-		await req.user.save()
+		const razorpayResponse = await fetch("https://api.razorpay.com/v1/orders", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Basic ${Buffer.from(`${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`).toString("base64")}`,
+			},
+			body: JSON.stringify({
+				amount: Math.round(amount * 100),
+				currency: "INR",
+				// Razorpay receipts are limited to 40 characters.
+				receipt: `fd_${req.user._id.toString().slice(-12)}_${Date.now().toString().slice(-10)}`,
+			}),
+		});
+		const order = await razorpayResponse.json();
+		if (!razorpayResponse.ok) throw new ErrorHandler(502, order.error?.description || "Razorpay could not create an order.");
 
 		res.status(200).json({
 			success: true,
-			message: "Success",
-			orderHistory: food,
-			order: order,
+			order,
+			keyId: process.env.RAZORPAY_KEY_ID,
+			user: { name: req.user.name },
 		});
 	} catch (error) {
 		throw new ErrorHandler(error.statusCode || 500, error.message);
@@ -949,29 +944,30 @@ export const postCreateOrder = ErrorWrapper(async (req, res, next) => {
 });
 
 export const postOrderVerifyPayment = ErrorWrapper(async (req, res, next) => {
-
-	if (process.env.RAZORPAY_SECRET === "1234567890dummysecretkey") {
-		return res.json({ success: true, message: "✅ Payment Verified Successfully" });
+	const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+	const isDummyPayment = req.body.dummyPayment === true && !process.env.RAZORPAY_KEY_SECRET;
+	if (!isDummyPayment) {
+		if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) throw new ErrorHandler(400, "Missing Razorpay payment details.");
+		if (!process.env.RAZORPAY_KEY_SECRET) throw new ErrorHandler(500, "Razorpay is not configured.");
+		const sign = razorpay_order_id + "|" + razorpay_payment_id;
+		const expectedSign = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET).update(sign.toString()).digest("hex");
+		if (razorpay_signature !== expectedSign) return res.status(400).json({ success: false, message: "Invalid signature" });
 	}
 
-	const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
-
-	const sign = razorpay_order_id + "|" + razorpay_payment_id;
-	const expectedSign = crypto
-		.createHmac("sha256", process.env.RAZORPAY_SECRET)
-		.update(sign.toString())
-		.digest("hex");
-
-	if (razorpay_signature === expectedSign) {
+		const cart = req.user.cart;
+		if (!cart?.length) throw new ErrorHandler(400, "Your cart is empty.");
+		const food = {
+			date: new Date(),
+			items: cart.map((item) => ({ name: item.food.name, price: item.food.price, quantity: item.quantity, image: item.food.images?.[0]?.url })),
+			totalPrice: cart.reduce((total, item) => total + (Number(item.food?.price) * Number(item.quantity || 1)), 0),
+		};
+		req.user.orderHistory.unshift(food);
+		req.user.cart = [];
+		await req.user.save();
 		return res.json({
 			success: true,
-			message: "Payment verified successfully",
+			message: isDummyPayment ? "Dummy payment completed successfully" : "Payment verified successfully",
 		});
-	} else {
-		return res
-			.status(400)
-			.json({ success: false, message: "Invalid signature" });
-	}
 });
 
 export const getOrderHistory = ErrorWrapper(async (req, res, next) => {

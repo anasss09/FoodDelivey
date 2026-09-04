@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "../../utils/axios";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Navbar, Nav, Container, Badge, Image, Button, Dropdown } from "react-bootstrap";
+import { Navbar, Nav, Container, Badge, Image, Dropdown } from "react-bootstrap";
 import Styles from './Navbar.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import ProfileImage from "../ProfileImage";
@@ -36,45 +36,45 @@ const NavbarApp = () => {
     const cartItemsCount = cartData?.items?.reduce((total, item) => total + (item.quantity || 1), 0) || 0;
 
     return (
-        <Navbar bg="light" expand="lg" className="shadow-sm py-3">
+        <Navbar expand="lg" className={Styles.navbar}>
             <Container>
                 {/* Brand / Logo */}
                 <Navbar.Brand 
                     as={NavLink} 
                     to='/app'
-                    className="fw-bold text-primary fs-4 text-decoration-none"
+                    className={Styles.brand}
                 >
-                    🍴 Foodie
+                    <span className={Styles.brandMark}>F</span> Foodie
                 </Navbar.Brand>
 
                 {/* Toggle button for mobile */}
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto align-items-center">
+                    <Nav className={`ms-auto align-items-center ${Styles.links}`}>
                         {!userData?.isLoggedIn ? (
                             <>
-                                <Nav.Link as={NavLink} to="/login" className="mx-2">
+                                <Nav.Link as={NavLink} to="/login" className={Styles.navLink}>
                                     Login
                                 </Nav.Link>
-                                <Nav.Link as={NavLink} to="/signup" className="mx-2">
+                                <Nav.Link as={NavLink} to="/signup" className={Styles.signupLink}>
                                     Sign Up
                                 </Nav.Link>
                             </>
                         ) : (
                             <>
-                                <Nav.Link as={NavLink} to="/app" className="mx-2">
+                                <Nav.Link as={NavLink} to="/app" className={Styles.navLink}>
                                     Home
                                 </Nav.Link>
-                                <Nav.Link as={NavLink} to="/history" className="mx-2">
+                                <Nav.Link as={NavLink} to="/history" className={Styles.navLink}>
                                     History
                                 </Nav.Link>
-                                <Nav.Link as={NavLink} to="/cart" className="mx-2 position-relative">
+                                <Nav.Link as={NavLink} to="/cart" className={`${Styles.navLink} position-relative`}>
                                     Cart
                                     {cartItemsCount > 0 && (
                                         <Badge 
-                                            bg="danger" 
-                                            className="position-absolute top-0 start-100 translate-middle"
+                                            bg="danger"
+                                            className={`position-absolute top-0 start-100 translate-middle ${Styles.cartBadge}`}
                                             style={{ fontSize: "0.6rem" }}
                                         >
                                             {cartItemsCount}
@@ -105,7 +105,7 @@ const NavbarApp = () => {
                                         />
                                     </Dropdown.Toggle>
 
-                                    <Dropdown.Menu>
+                                    <Dropdown.Menu className={Styles.dropdownMenu}>
                                         <Dropdown.Item onClick={() => navigate("/profile")}>
                                             👤 Profile
                                         </Dropdown.Item>

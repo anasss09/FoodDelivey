@@ -62,13 +62,15 @@ const Cart = () => {
 	}
 
 	return (
-		<>
+		<main className={Styles.cartPage}>
+			<div className={Styles.cartHeader}><span>Your order</span><h1>Ready when you are.</h1><p>{cart.length ? `${cart.length} delicious item${cart.length > 1 ? "s" : ""} in your basket` : "Your basket is waiting for something tasty."}</p></div>
 			{cart.length > 0 ? (
-				<>
+				<div className={Styles.cartLayout}>
+					<section className={Styles.itemsList}>
 					{cart.map((item, indx) => (
 						<div
 							key={item._id}
-							className={`border p-2 my-2 ${Styles["card-item-comtainer"]}`}
+							className={Styles["card-item-comtainer"]}
 						>
 							<div>
 								<img
@@ -87,7 +89,7 @@ const Cart = () => {
 									<div className={Styles["card-item-details"]}>
 										{item.food.description}
 									</div>
-									<div className={`${Styles["card-item-veg"]} ${item.food.veg ? "" : "no"}`}>
+									<div className={`${Styles["card-item-veg"]} ${item.food.veg ? Styles.veg : Styles.nonVeg}`}>
 										{item.food.veg ? "Veg" : "Non-Veg"}
 									</div>
 
@@ -122,13 +124,14 @@ const Cart = () => {
 							</div>
 						</div>
 					))}
-
-					<PaymentButton amount={totalPrice} />
-				</>
+					</section>
+					<aside className={Styles.orderSummary}><span>Order summary</span><div><p>Items total</p><strong>₹{totalPrice}</strong></div><div><p>Delivery</p><strong className={Styles.free}>Free</strong></div><hr /><div className={Styles.total}><p>To pay</p><strong>₹{totalPrice}</strong></div><small>Dummy checkout is enabled for this project.</small></aside>
+				</div>
 			) : (
 				<CartEmpty />
 			)}
-		</>
+			{cart.length > 0 && <PaymentButton amount={totalPrice} />}
+		</main>
 	);
 };
 

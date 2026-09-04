@@ -1,115 +1,69 @@
 import React from "react";
-import { Container, Row, Col, Button, Card } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import McDonals from '../assets/McDonals.avif'
 import Dominos from '../assets/Dominos.png'
 import BurgerKing from '../assets/BergerKing.avif'
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import Styles from "./LandingPage.module.css";
 
 const LandingPage = () => {
   const userData = useSelector(state => state.userReducer)
   return (
     <>
       {!userData.isLoggedIn && (
-        <div>
-
-          {/* Hero Section */}
-          <section className="bg-light text-center py-5">
-            <Container>
-              <h1 className="display-4 fw-bold">Delicious Food, Delivered Fast 🚀</h1>
-              <p className="lead">
-                Order from your favorite restaurants and get it delivered at your doorstep.
-              </p>
+        <main className={Styles.page}>
+          <section className={Styles.hero}>
+            <Container className={Styles.heroInner}>
+              <div className={Styles.heroCopy}>
+                <span className={Styles.eyebrow}><span></span> Serving good days</span>
+                <h1>Food worth <em>leaving</em> the sofa for.</h1>
+                <p>From local favorites to late-night cravings, discover a better way to eat at home.</p>
+                <div className={Styles.actions}>
+                  <Link to="/signup" className={Styles.primaryAction}>Start ordering <span>→</span></Link>
+                  <a href="#favorites" className={Styles.secondaryAction}>Explore restaurants</a>
+                </div>
+                <div className={Styles.trustRow}>
+                  <div className={Styles.avatars}><b>J</b><b>M</b><b>A</b></div>
+                  <p><strong>20k+</strong> hungry neighbors<br />already ordering with Foodie</p>
+                </div>
+              </div>
+              <div className={Styles.heroVisual}>
+                <div className={Styles.heroGlow}></div>
+                <div className={Styles.mainDish}><img src={BurgerKing} alt="A freshly made burger" /></div>
+                <div className={Styles.deliveryNote}><span>⚡</span><div><strong>Under 30 minutes</strong><small>Hot food, zero waiting</small></div></div>
+                <div className={Styles.rating}><strong>4.9</strong><span>★★★★★</span><small>from food lovers</small></div>
+                <div className={Styles.orbitOne}></div><div className={Styles.orbitTwo}></div>
+              </div>
             </Container>
           </section>
 
-          {/* Features */}
-          <section className="py-5">
+          <section className={Styles.features}>
+            <Container><Row>
+              <Col md={4}><div className={Styles.feature}><span>01</span><div><h3>Picked for you</h3><p>Real neighborhood restaurants, all in one delicious place.</p></div></div></Col>
+              <Col md={4}><div className={Styles.feature}><span>02</span><div><h3>Fresh from the kitchen</h3><p>We send your order out when it is ready, not a moment sooner.</p></div></div></Col>
+              <Col md={4}><div className={Styles.feature}><span>03</span><div><h3>Easy from start to finish</h3><p>Simple ordering, clear updates, and the payment that suits you.</p></div></div></Col>
+            </Row></Container>
+          </section>
+
+          <section id="favorites" className={Styles.favorites}>
             <Container>
-              <Row className="text-center">
-                <Col md={4}>
-                  <h3>⚡ Fast Delivery</h3>
-                  <p>Get your food delivered in less than 30 minutes.</p>
-                </Col>
-                <Col md={4}>
-                  <h3>🥗 Fresh & Healthy</h3>
-                  <p>We partner with the best restaurants in town.</p>
-                </Col>
-                <Col md={4}>
-                  <h3>💳 Easy Payment</h3>
-                  <p>Pay online or cash on delivery, your choice.</p>
-                </Col>
+              <div className={Styles.sectionHeading}><div><span className={Styles.eyebrow}>Neighborhood favorites</span><h2>A little something for every mood.</h2></div><Link to="/signup">See all restaurants <span>→</span></Link></div>
+              <Row className="g-4">
+                {[
+                  ["McDonald's", "American classics · 20–30 min", McDonals, "#f4cf44"],
+                  ["Domino's", "Pizza night · 25–35 min", Dominos, "#e9ddd0"],
+                  ["Burger King", "Flame grilled · 20–30 min", BurgerKing, "#f4b78e"],
+                ].map(([name, detail, image, color]) => <Col md={4} key={name}><article className={Styles.restaurantCard}><div className={Styles.cardImage} style={{ backgroundColor: color }}><img src={image} alt={name} /><span>Open now</span></div><div className={Styles.cardBody}><div><h3>{name}</h3><p>{detail}</p></div><button aria-label={`View ${name}`}>↗</button></div></article></Col>)}
               </Row>
             </Container>
           </section>
 
-          {/* Popular Restaurants */}
-          <section className="bg-light py-5">
-            <Container >
-              <h2 className="text-center mb-4">Popular Restaurants 🍔</h2>
+          <section className={Styles.cta}><Container><div><span className={Styles.eyebrow}>Your table is waiting</span><h2>Make tonight<br /><em>taste better.</em></h2></div><Link to="/signup" className={Styles.lightAction}>Find your next meal <span>→</span></Link></Container></section>
 
-              <Row className="justify-content-around">
-                <Col md={4}>
-                  <Card className="mb-4 shadow-sm">
-                    <Card.Img variant="top" src={McDonals} style={{ height: "200px", objectFit: "cover" }} />
-                    <Card.Body>
-                      <Card.Title>McDonals</Card.Title>
-                      <Card.Text>
-                        Tasty meals from the best chefs. Order now and enjoy hot food delivered.
-                      </Card.Text>
-                      <Button variant="primary">View Menu</Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-
-                <Col md={4}>
-                  <Card className="mb-4 shadow-sm">
-                    <Card.Img variant="top" src={Dominos} style={{ height: "200px", objectFit: "contain" }} />
-                    <Card.Body>
-                      <Card.Title>Dominos</Card.Title>
-                      <Card.Text>
-                        Tasty meals from the best chefs. Order now and enjoy hot food delivered.
-                      </Card.Text>
-                      <Button variant="primary">View Menu</Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-
-                <Col md={4}>
-                  <Card className="mb-4 shadow-sm">
-                    <Card.Img variant="top" src={BurgerKing} style={{ height: "200px", objectFit: "cover" }} />
-                    <Card.Body>
-                      <Card.Title>Burger King</Card.Title>
-                      <Card.Text>
-                        Tasty meals from the best chefs. Order now and enjoy hot food delivered.
-                      </Card.Text>
-                      <Button variant="primary">View Menu</Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              </Row>
-            </Container>
-          </section>
-
-          {/* Call to Action */}
-          <section className="text-center py-5">
-            <Container>
-              <h2>Download the FoodieExpress App 📱</h2>
-              <p>Order food anytime, anywhere with our mobile app.</p>
-              <Button variant="dark" className="me-2">
-                App Store
-              </Button>
-              <Button variant="dark">Google Play</Button>
-            </Container>
-          </section>
-
-          {/* Footer */}
-          <footer className="bg-dark text-white text-center py-3">
-            <Container>
-              <p>© 2025 FoodieExpress. All rights reserved.</p>
-            </Container>
-          </footer>
-        </div>
+          <footer className={Styles.footer}><Container><span>Foodie</span><p>Good food, delivered with care.</p><small>© 2026 Foodie. All rights reserved.</small></Container></footer>
+        </main>
       )}
     </>
   );

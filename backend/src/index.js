@@ -9,7 +9,7 @@ import { verifyjwt } from "./middlewares/verifyJWT.js";
 const app = express();
 const PORT = process.env.PORT;
 
-const allowedOrigins = process.env.CORS_ORIGINS.split(',');
+const allowedOrigins = process.env.CORS_ORIGINS?.split(',');
 
 app.use(cors({
     origin: allowedOrigins,              //  "http://localhost:3000",
@@ -35,7 +35,7 @@ app.get('/getuser', verifyjwt, getUser);
 app.use('/', userRouter)
 app.use('/restaurant', verifyjwt, restaurantRouter)
 
-mongoose.connect(`${process.env.DB_PATH}`)
+mongoose.connect(`${process.env.DB_PATH}`) // `${process.env.DB_PATH}`
     .then(() => {
         app.listen(PORT, () => {
             console.log("http://localhost:" + PORT);
