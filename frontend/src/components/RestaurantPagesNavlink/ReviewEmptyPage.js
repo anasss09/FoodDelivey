@@ -1,6 +1,5 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
-import { EmojiFrown } from "react-bootstrap-icons";
+import { Card } from "react-bootstrap";
 import Styles from './Reviews.module.css'
 
 const ReviewEmptyPage = () => {

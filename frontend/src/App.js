@@ -14,7 +14,6 @@ import Reviews from "./components/RestaurantPagesNavlink/Reviews";
 import Overview from "./components/RestaurantPagesNavlink/Overview";
 import Photos from "./components/RestaurantPagesNavlink/Photos";
 import Menu from "./components/RestaurantPagesNavlink/Manu";
-import { FormRestaurantReview } from "./components/RestaurantPagesNavlink/FormRestaurantReview";
 
 
 const App = () => {

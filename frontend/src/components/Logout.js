@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { replace, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from '../utils/axios'
-import { Navbar } from "react-bootstrap";
 
 const Logout = () => {
 

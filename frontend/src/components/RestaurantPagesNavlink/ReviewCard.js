@@ -63,7 +63,7 @@ const ReviewCard = ({ restaurant }) => {
 
                     {item.images?.map((image) => (
                         <div key={image._id} className={Styles.reviewImageContainer}>
-                            <img src={image.url} />
+                            <img src={image.url} alt="Review" />
                         </div>
                     ))}
 
